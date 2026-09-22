@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Gestor {
-    public static void main() {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int opcion;
 
@@ -10,7 +10,7 @@ public class Gestor {
 
 
         do {
-            System.out.println("1. Añadir Tarea | 2. Ver Tarea | 3. Marcar tareas como completadas | 4. Eliminar tarea | 5. Salir.");
+            System.out.println("1. Añadir Tarea | 2. Ver Tarea | 3. Marcar tareas como completadas | 4. Eliminar tarea | 5. Filtrar por prioridad | 6. Salir.");
             System.out.print("Elige la opcion:");
             opcion = sc.nextInt();
 
@@ -18,7 +18,10 @@ public class Gestor {
                 sc.nextLine();
                 System.out.println("Dime la descripcion de la tarea que desees");
                 String descripcion = sc.nextLine();
-                tarea t = new tarea(descripcion);
+                System.out.println("Dime la prioridad (ALTA, MEDIA o BAJA)");
+                String prioridad = sc.nextLine();
+
+                tarea t = new tarea(descripcion, prioridad);
                 tareas.add(t);
                 System.out.println("Tarea añadida correctamente");
 
@@ -29,6 +32,7 @@ public class Gestor {
                 for (tarea t : tareas) {
                     System.out.println("Id: " + t.id);
                     System.out.println("Descripcion: " + t.descripcion);
+                    System.out.println("Prioridad: " + t.prioridad);
                     if (t.estado) {
                         System.out.println("Estado : completado");
                     } else {
@@ -59,6 +63,6 @@ public class Gestor {
                     }
                 }
             }
-        } while (opcion != 5);
+        } while (opcion != 6);
     }
 }
